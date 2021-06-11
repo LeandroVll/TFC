@@ -1,0 +1,233 @@
+            <div class="top">
+                <div class="izquierda">
+                    <h2>FORMULARIO DE DIRECCION</h2>
+                    <br />
+                </div>
+                <div class="derecha">
+                    <div class="interior">
+                        <div class="inizq">
+                            <h6>inicia sesion</h6>
+                            <img class="avatar" src="../../../assets/img/icon_sesion/2.png" >
+                        </div>
+                        <div class="intdere">
+                            <h6>carrito</h6>
+                                <a [routerLink]="['../../tienda/carrito']">
+                                    <img class="carrito" src="../../../assets/img/logo_carrito/carrito2.png" >                               
+                               </a>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+                
+            </div>
+            <div class="contenedor">
+                <form [formGroup]="formDireccion" (ngSubmit)="direccionEnvio()">
+                    <div class="row">
+                
+                        <div class="col-md-1">
+                
+                        </div>
+                
+                        <div  style="width:25%;float:left;min-height:1px;padding-right:15px; padding-left:15px;">
+                            <div class="form-group">
+                                <label for="tipovia">Tipo de via *</label>
+                                <input type="text" class="form-control"  id="tipovia" name="tipovia" formControlName="tipovia" placeholder="...c/, Ronda etc...">
+                            </div>
+                
+                            <span class="danger" *ngIf="formDireccion.controls['tipovia'].errors?.required">
+                                <p> CAMPO OBLIGATORIO </p>
+                            </span>
+                                   
+                        </div>
+                        <div  style="width:25%;float: right;min-height:1px;padding-right:15px; padding-left:15px;">
+                            <div class="form-group">
+                                <label for="nombrevia">Nombre de la via *</label>
+                                <input type="text" class="form-control"  id="nombrevia" name="nombrevia" formControlName="nombrevia" placeholder="...nombre via...">
+                            </div>
+                
+                            <span class="danger" *ngIf="formDireccion.controls['nombrevia'].errors?.required">
+                                <p> CAMPO OBLIGATORIO </p>
+                            </span>
+                                   
+                        </div>
+                
+                        <div class="col-md-1">
+                
+                        </div>
+                        <br />
+                        
+                    </div>
+                    
+                        
+                    <div class="row">
+                
+                        <div class="col-md-1">
+                
+                        </div>
+                
+                        <div  style="width:25%;float:left;min-height:1px;padding-right:15px; padding-left:15px;">
+                            <div class="form-group">
+                                <label for="edificio">Edificio *</label>
+                                <input type="text" class="form-control" id="edificio" name="edificio" formControlName="edificio" placeholder="...numero edificio...">
+                              </div>
+                
+                              <span class="danger" *ngIf="formDireccion.controls['edificio'].errors?.required">
+                                <p> ECAMPO OBLIGATORIO </p>
+                            </span>                               
+                        </div>
+                        <div  style="width:25%;float: right;min-height:1px;padding-right:15px; padding-left:15px;">
+                            <div class="form-group">
+                                <label for="letraedificio">letra *</label>
+                                <input type="text" class="form-control" id="letraedificio" name="letraedificio" formControlName="letraedificio" placeholder="...letra edificio...">
+                              </div>
+                
+                              <span class="danger" *ngIf="formDireccion.controls['letraedificio'].errors?.required">
+                                <p> ECAMPO NO OBLIGATORIO</p>
+                            </span>                               
+                        </div>
+                
+                        <div class="col-md-1">
+                
+                        </div>
+                        <br />
+                        
+                    </div>
+                                
+                    <div class="row">            
+                        <div class="col-md-1">
+    
+                        </div>
+                
+                        <div  style="width:25%;float:left;min-height:1px;padding-right:15px; padding-left:15px;">
+                            <div class="form-group">
+                                <label for="piso">Piso *</label>
+                                <input type="text" class="form-control" id="piso" name="piso" formControlName="piso" placeholder="...piso...">
+                              </div>
+                
+                              <span class="danger" *ngIf="formDireccion.controls['piso'].errors?.required">
+                                <p> ECAMPO OBLIGATORIO </p>
+                            </span>                               
+                        </div>
+                        <div  style="width:25%;float: right;min-height:1px;padding-right:15px; padding-left:15px;">
+                            <div class="form-group">
+                                <label for="puerta">Puerta </label>
+                                <input type="text" class="form-control" id="puerta" name="puerta" formControlName="puerta" placeholder="...A,B,C...">
+                              </div>                              
+                        </div>
+                        <span class="danger" *ngIf="formDireccion.controls['puerta'].errors?.required">
+                            <p> ECAMPO OBLIGATORIO </p>
+                        </span>  
+                        <div class="col-md-1">
+                
+                        </div>
+                        <br />
+                        
+                    </div>
+     
+                    <div class="row">            
+                        <div class="col-md-1">
+    
+                        </div>
+                
+                        <div  style="width:25%;float:left;min-height:1px;padding-right:15px; padding-left:15px;">
+                            <div class="form-group">
+                                <label for="cp">C.P. *</label>
+                                <input type="text" class="form-control" id="cp" name="cp" formControlName="cp" placeholder="...cp...">
+                              </div>
+                
+                              <span class="danger" *ngIf="formDireccion.controls['cp'].errors?.required">
+                                <p> ECAMPO OBLIGATORIO </p>
+                            </span>                               
+                        </div>
+                        <div  style="width:25%;float: right;min-height:1px;padding-right:15px; padding-left:15px;">
+                            <div class="form-group">
+                                <label for="codpro">cod Provincia</label>
+                                <input type="text" class="form-control" id="codpro" name="codpro" formControlName="codpro" placeholder="...codpro...">
+                              </div>
+                                                           
+                        </div>
+                
+                        <div class="col-md-1">
+                
+                        </div>
+                        <br />
+                        
+                    </div>
+    
+                    <div class="row">            
+                        <div class="col-md-1">
+    
+                        </div>
+                
+                        <div  style="width:25%;float:left;min-height:1px;padding-right:15px; padding-left:15px;">
+                            <div class="form-group">
+                                <label for="nombreProv">Nombre Provincia*</label>
+                                <input type="text" class="form-control" id="nombreProv" name="nombreProv" formControlName="nombreProv" placeholder="...nombre provincia...">
+                              </div>
+                
+                              <span class="danger" *ngIf="formDireccion.controls['nombreProv'].errors?.required">
+                                <p> ECAMPO OBLIGATORIO </p>
+                            </span>                               
+                        </div>
+                        <div  style="width:25%;float: right;min-height:1px;padding-right:15px; padding-left:15px;">
+                            <div class="form-group">
+                                <label for="codmun">cod Municipio</label>
+                                <input type="text" class="form-control" id="codmun" name="codmun" formControlName="codmun" placeholder="...codmun...">
+                              </div>
+                                                           
+                        </div>
+                
+                        <div class="col-md-1">
+                
+                        </div>
+                        <br />
+                        
+                    </div>
+    
+                    <div class="row">            
+                        <div class="col-md-1">
+    
+                        </div>
+                
+                        <div  style="width:25%;float:left;min-height:1px;padding-right:15px; padding-left:15px;">
+                            <div class="form-group">
+                                <label for="nombreMun">Nombre Municipio*</label>
+                                <input type="text" class="form-control" id="nombreMun" name="nombreMun" formControlName="nombreMun" placeholder="...nombreMun...">
+                              </div>
+                
+                              <span class="danger" *ngIf="formDireccion.controls['nombreMun'].errors?.required">
+                                <p> ECAMPO OBLIGATORIO </p>
+                            </span>                               
+                        </div>
+                        <div class="col-md-1">
+                
+                        </div>
+                        <br />
+                        
+                    </div>
+                
+                
+                    
+                    <div class="row">
+                
+                        <div class="col-md-4" style="margin-top:10px;">
+                            <div class="btn-group" role="group" aria-label="Basic example">
+                                <button  class="btn btn-success"  > <a [routerLink]="['../../cliente/pedidos']" class="card-link" style="color: cornsilk;">Volver</a></button>
+                            <button type="submit" style="width:80%;" class="btn btn-success" [disabled]="formDireccion.status=='INVALID'">
+                                <span style="color:white" class="glyphicon glyphicon-ok">
+                                    confirmar
+                                </span>
+                            </button>
+                            </div>
+                            
+                        </div>
+                
+                
+                    </div>
+                </form>
+            </div>
+            
+
+            
+            

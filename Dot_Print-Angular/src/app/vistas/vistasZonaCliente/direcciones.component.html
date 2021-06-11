@@ -1,0 +1,52 @@
+<div class="row" *ngFor="let unaDireccion of listaDirecciones">
+    <table class="table">
+        <thead class="thead-dark" style="text-align: center;">
+        <tr>          
+            <th scope="col">tipovia</th>            
+            <th scope="col">nombrevia</th>
+            <th scope="col">edificio</th>
+            <th scope="col">letra edificio</th>
+            <th scope="col">piso</th>
+            <th scope="col">puerta</th>
+            <th scope="col">cp</th>
+        </tr>
+        </thead>
+        <tbody >
+            
+                <th scope="row"> </th>
+                <tr *ngFor="let ladireccion of unaDireccion">          
+                    <td><div class="custom-control custom-radio">
+                        <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
+                        <label class="custom-control-label" for="defaultUnchecked">{{ladireccion.tipoVia}}</label>
+                      </div>
+                    </td>
+                    <td>{{ladireccion.nombreVia}}</td>
+                    <td>{{ladireccion.numeroEdificio}}</td>
+                    <td>{{ladireccion.letraedificio}}</td>
+                    <td>{{ladireccion.numeroPiso}}</td>
+                    <td>{{ladireccion.puerta}}</td>
+                    <td>{{ladireccion.cp}}</td>
+                </tr>
+           
+        
+        </tbody>
+    </table>   
+    <div class="row">
+    
+        <div class="col-md-4" style="margin-top:10px;">
+
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button  class="btn btn-success" style="width:80%;" > <a [routerLink]="['../../Cliente/PanelUsuario']" class="card-link" style="color: cornsilk;">Volver</a></button>
+                <button type="submit" style="width:80%;" class="btn btn-success" >
+                    <span style="color:white" class="glyphicon glyphicon-ok">
+                        Seleccionar
+                    </span>
+                </button>
+            </div>
+            
+            <br />
+        </div>
+
+    </div>
+</div>       
+

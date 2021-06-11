@@ -1,0 +1,153 @@
+<div class="contenedor">
+    <form [formGroup]="formDiseno" >
+        <section>
+            <div class="titulo" style="margin-top: 3rem;">
+                <h2>ESCOGE EL DISEÑO QUE MAS TE GUSTE</h2>
+            </div>
+        </section>
+    
+        <section style="margin-top: 3.5rem;"><!--radio colores e imagenes de diseño-->
+            <div class="contenido">
+                <div class="colores">
+                    <h6 style="text-align: left; margin-bottom: 1.5rem;">ELIGE EL COLOR DEL DISEÑO</h6>
+                      <div class="form-group row" id="radios">
+                          <label class="color">
+                          <input type="radio" value="color1" name="formColor" formControlName="formColor">
+                          <span class="checkmark" style="background-color: rgba(255, 217, 0, 0.945);"></span>
+                          </label>
+                          <label class="color">
+                          <input type="radio" value="color2" name="formColor" formControlName="formColor">
+                          <span class="checkmark" style="background-color: rgb(0, 124, 128);"></span>
+                          </label>
+                          <label class="color">
+                          <input type="radio" value="color3" name="formColor" formControlName="formColor">
+                          <span class="checkmark" style="background-color: rgb(0, 45, 128);"></span>
+                          </label>
+                          <label class="color">
+                          <input type="radio" value="color4" name="formColor" formControlName="formColor">
+                          <span class="checkmark" style="background-color: rgb(128, 0, 107);"></span>
+                          </label>
+                          <label class="color">
+                          <input type="radio" value="color5" name="formColor" formControlName="formColor">
+                          <span class="checkmark" style="background-color: rgb(128, 0, 0);"></span>
+                          </label>
+                          <label class="color">
+                          <input type="radio" value="color6" name="formColor" formControlName="formColor">
+                          <span class="checkmark" style="background-color: black;"></span>
+                          </label>          
+                      </div>
+                      <div class="form-group row" id="radios">
+                          <label class="color">
+                              <input type="radio" value="color7" name="formColor" formControlName="formColor">
+                              <span class="checkmark" style="background-color: red;"></span>
+                          </label>
+                          <label class="color">
+                              <input type="radio" value="color8" name="formColor" formControlName="formColor">
+                              <span class="checkmark" style="background-color: green;"></span>
+                          </label>
+                          <label class="color">
+                              <input type="radio" value="color9" name="formColor" formControlName="formColor">
+                              <span class="checkmark" style="background-color: rgb(87, 0, 128);"></span>
+                          </label>
+                          <label class="color">
+                              <input type="radio" value="color10" name="formColor" formControlName="formColor">
+                              <span class="checkmark" style="background-color: rgba(224, 148, 212, 0.966);"></span>
+                          </label>
+                          <label class="color">
+                              <input type="radio" value="color11" name="formColor" formControlName="formColor">
+                              <span class="checkmark" style="background-color: rgb(235, 112, 112);"></span>
+                          </label>
+                          <label class="color">
+                              <input type="radio" value="color12" name="formColor" formControlName="formColor">
+                              <span class="checkmark" style="background-color: rgb(167, 163, 163);"></span>
+                          </label>         
+                      </div>
+                      <div class="form-group row" >
+                          <label class="color">
+                          <input type="radio" value="color13" name="formColor" formControlName="formColor">
+                          <span class="checkmark" style="background-color: rgb(208, 255, 0);"></span>
+                          </label>
+                          <label class="color">
+                          <input type="radio" value="color14" name="formColor" formControlName="formColor">
+                          <span class="checkmark" style="background-color: rgb(26, 189, 162);"></span>
+                          </label>
+                          <label class="color">
+                          <input type="radio" value="color15" name="formColor" formControlName="formColor">
+                          <span class="checkmark" style="background-color: rgb(255, 37, 219);"></span>
+                          </label>
+                          <label class="color">
+                          <input type="radio" value="16" name="formColor" formControlName="formColor">
+                          <span class="checkmark" style="background-color: rgb(133, 176, 231);"></span>
+                          </label>
+                          <label class="color">
+                          <input type="radio" value="17" name="formColor" formControlName="formColor">
+                          <span class="checkmark" style="background-color: rgb(168, 255, 6);"></span>
+                          </label>
+                          <label class="color">
+                          <input type="radio" value="18" name="formColor" formControlName="formColor">
+                          <span class="checkmark" style="background-color: rgba(40, 4, 48, 0.938);"></span>
+                          </label>          
+                      </div> 
+                </div> 
+                  <div class="imgObjeto">
+                      <div class="objIzquierda" id="objIzquierda">
+                        <div class="objElegido">
+                            <h5 style="text-align: center;">OBJETO ELEGIDO</h5>
+                           <img  src="../../../assets/img/camisas/empresas/CAMISETACAFE1A250X250.jpg" class="zoom img-fluid "  alt="">
+                        </div>
+                      </div>
+                      <div class="objderecha" id="objderecha" *ngFor="let item of outputDisenos">
+                          <h5 style="text-align: center;">ELIGE DISEÑO</h5>    
+                           <!-- <div id="carouselExampleIndicators"  *ngFor="let diseno of item" class="carousel slide" data-ride="carousel">
+                                <ol class="carousel-indicators">
+                                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                </ol>
+                                <div class="carousel-inner">
+                                  <div class="carousel-item active">                                      
+                                    <button type="submit"(click)="reciveDiseno(variable)" name="someName" value="diseno.id">   
+                                        <img class="d-block w-100" [src]="diseno.imagen" alt="First slide">   
+                                    </button></div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                  <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                  <span class="sr-only">Next</span>
+                                </a>
+                            </div>-->
+                            <div id="carousel1" class="carousel slide" data-ride="carousel">
+                                <div class="carousel-inner" role="listbox">
+                                    <div *ngFor="let diseno of item; let i = index" class="carousel-item {{ (i == 0) ? 'active' : ''}}">
+                                        <button type="button" (click)="recuperaDiseno(diseno.idDiseno)"[disabled]="formDiseno.status=='INVALID'">
+                                            <img class="d-block img-fluid w-100" [src]="diseno.imagen" >
+                                        </button>
+                                    </div>
+                                </div>
+                                <a class="carousel-control-prev" href="#carousel1" role="button" data-slide="prev"> <span class="carousel-control-prev-icon" aria-hidden="true"></span> <span class="sr-only">Previous</span> </a>
+                                <a class="carousel-control-next" href="#carousel1" role="button" data-slide="next"> <span class="carousel-control-next-icon" aria-hidden="true"></span> <span class="sr-only">Next</span> </a>
+                            </div>    
+                      </div>
+                  </div>  
+            </div>
+
+        </section>
+    
+        <section>
+            <div class="col-md-4" style="margin-top:12rem; width: 12rem;">
+                <button type="submit" style="width:80%;" class="btn btn-success" [disabled]="formDiseno.status=='INVALID'">
+                    <span style="color:white" class="glyphicon glyphicon-ok">
+                       <a [routerLink]="['../../tienda/carrito']" style="color: cornsilk;">seguir</a> 
+                    </span>
+                </button>
+                <br />
+            </div>
+        </section>
+    </form>  
+
+
+</div>
+

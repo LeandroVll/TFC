@@ -1,0 +1,40 @@
+<div class="row">
+    <table class="table">
+        <thead class="thead-dark">
+        <tr>          
+            <th scope="col">Fecha del Pedido</th>
+            <th scope="col">Estado del Pedido</th>
+            <th scope="col">Total</th>
+            <th scope="col">Lista Productos</th>
+        </tr>
+        </thead>
+        <tbody>
+            
+                
+                <tr  *ngFor="let unPedido of outputLista">          
+                    <td>{{unPedido.fechaPedido}}</td>
+                    <td>{{unPedido.estadoPedido}}</td>
+                    <td>{{unPedido.total}}</td>
+                    <td>
+                        <div class="btn-group dropright">
+                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Lista
+                            </button>
+                            <div class="dropdown-menu"  *ngFor="let lista of outproductos">
+                                <div *ngFor="let item of lista.productos[0]">
+                                    <span>producto:&nbsp;{{item.nombreProducto}}</span>&nbsp;<span>cantidad: &nbsp;{{item.camisa.cantidad}} </span>
+                                    <!--<div *ngFor="let aux of item[0]">
+                                        <span>{{aux.nombreProducto}}</span>
+
+                                    </div>-->
+                                </div>
+                              
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+           
+        
+        </tbody>
+    </table>   
+</div>       

@@ -1,0 +1,83 @@
+
+    <div class="container">
+    
+        <h2 style="color: green;">Detalles del Pedido</h2>
+    
+        <div class="row" 
+                *ngFor="let unPedido of outPutPedido">
+                    
+                <div class="card" style="width: 50rem;">
+                    <div class="card-header">
+                        <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">PRODUCTO</th>
+                                <th scope="col">CANTIDAD</th>
+                                <th scope="col">DISEÑO</th>
+                                <th scope="col">PRECIO U.</th>
+                                <th scope="col">MODIFICAR</th>
+                              </tr>
+                            </thead>
+                            <tbody  *ngFor="let item of unPedido.listaProductos">
+                                
+                                    <tr scope="row" *ngFor="let list of item[0]">
+                                        <td>
+                                            <div class="aux">  
+                                                <div >
+                                                    <img [src]="list.camisa.imagen" style="width: 5rem; height: 5rem;" >
+                                                </div>                                             
+                                            </div>
+                                        </td>
+                                        <td> 
+                                            <div class="aux" [formGroup]="formCamisa" >
+                                                <input name="formCamisa" type="text" placeholder="{{list.camisa.cantidad}}" style="text-align: center; width: 5rem;" formControlName="cantModi">
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="aux" >
+                                                <img [src]="item[1].imagen" style="width: 5rem; height: 5rem;" >
+                                            </div>
+                                        </td>
+                                        <td>
+                                           <div style="width: 3rem; text-align: center;">
+                                               <span><b>{{list.precio}} €</b></span>
+                                           </div>
+                                        </td>
+                                        <td>
+                                        <div class="aux" >
+                                                <button class="btn btn-primary" (click)="ModificaPedido(list.camisa)" [disabled]="formCamisa.status=='INVALID'">MODIFICAR</button>
+                                        </div>
+                                        </td>
+                                    </tr>
+                                
+                            </tbody>      
+                        </table>
+                    </div>
+                    <div class="datos">
+                        <ul class="list-group list-group-flush">
+                        
+                            <li class="list-group-item" id="fecha" >Fecha del Pedido: <span class="badge badge-primary badge-pill"> {{unPedido.fechaPedido}}</span></li>
+                        
+                            <li class="list-group-item"  id="tipoEnvio">Tipo de Envio: <span class="badge badge-primary badge-pill"> {{unPedido.tipodeEnvio}}</span></li>
+                        
+                            <li class="list-group-item"  id="gastosEnvio">Gastos de envio: <span class="badge badge-primary badge-pill"> {{unPedido.gastosEnvio}} €</span></li>
+                        
+                            <li class="list-group-item"  id="subtotal">Subtotal: <span class="badge badge-primary badge-pill"> {{unPedido.subtotal}} €</span></li>
+                        
+                            <li class="list-group-item"  id="estadoEnvio">Estado del Pedido: <span class="badge badge-primary badge-pill"> {{unPedido.estatus}}</span></li>
+                        
+                            <li style="color: rgb(7, 7, 214);" class="list-group-item" id="total">Total: <span class="badge badge-primary badge-pill"><strong> {{unPedido.total}} €</strong></span></li>
+                        
+                        </ul>
+                    </div>
+
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="submit" class="btn btn-success" ><a [routerLink]="['../../cliente/login']" class="card-link" style="color: cornsilk;">CONFIRMAR COMPRA</a></button>
+                        <button  class="btn btn-success"  > <a [routerLink]="['../../Cliente/PanelUsuario']" class="card-link" style="color: cornsilk;">DESCARTAR PEDIDO</a></button>
+                    </div>
+                </div>
+        </div>
+    </div>   
+
+  
+

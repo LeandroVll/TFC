@@ -1,0 +1,30 @@
+.top{
+    padding-top: 1rem;
+}
+.izquierda{
+    float: left;
+}
+.derecha{
+    float:right
+}
+.avatar{
+    width: 5rem;
+    height: 5rem;
+}
+.inizq{
+    float: left;
+    margin-right: 2rem;
+    text-align: center;
+}
+.intdere{
+    float: right;
+    text-align: center;
+}
+.carrito{
+    width: 4rem;
+    height: 4rem;
+}
+.contenedor{
+   
+    padding-top: 5rem;
+}

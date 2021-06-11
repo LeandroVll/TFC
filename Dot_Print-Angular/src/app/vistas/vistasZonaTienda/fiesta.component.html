@@ -1,0 +1,131 @@
+
+  <div class="contenedor">   
+    <form [formGroup]="formCamisa" >  
+    <header>
+      <div class="titulos2">
+        <h2>COMIENZA TU DISEÑO</h2>
+        <h3>ELIJE EL OBJETO DONDE QUIERES IMPRIMIR</h3>
+      </div>
+    </header>
+  <section ><!-- mosaico de producto disponibles-->
+      <div class="">
+          <div *ngFor="let item of indices">
+            <div class="column">
+              <button class="botonpersonalizado" (click)="camisaseleccionada(item._id)">
+                <img class="mosaicoImg" [src]="item.imagen" >    
+              </button>
+            </div>
+          </div>
+      </div>
+  </section>
+  <br>
+  <section class="page-section" id="opciones-objetos"><!-- genero talla-->
+    <div class="container-opciones">
+      <div class="form-group">
+        <h6>TIPO DE TALLA</h6>
+        <div class="form-gorup">
+          <label class="radio-inline">
+            <input type="radio" value="tallaHombre" name="formTipoTalla" formControlName="formTipoTalla">
+            CAMISETA HOMBRE
+          </label>
+          <br>
+          <label class="radio-inline">
+            <input type="radio" value="tallaMujer" name="formTipoTalla" formControlName="formTipoTalla">
+            CAMISETA MUJER
+          </label>
+        </div>
+      </div>
+      <div class="imgObjeto">
+        <div class="row">
+          <div class="camisa-hombre">
+              <h5>CAMISETA SELECCIONADA</h5>
+              <div *ngFor="let item of imgSelect">
+                <img [src]="item.imagen" class="imgselect">
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </section>
+    
+  <section><!--radio colores-->
+    <div class="colores">
+      <h6>COLOR</h6>
+      <div class="form-group row">
+        <label class="color">
+          <input type="radio" value="rojo" name="formColor" formControlName="formColor">
+          <span class="checkmark" style="background-color: red;"></span>
+        </label>
+        <label class="color">
+          <input type="radio" value="verde" name="formColor" formControlName="formColor">
+          <span class="checkmark" style="background-color: green;"></span>
+        </label>
+        <label class="color">
+          <input type="radio" value="azul" name="formColor" formControlName="formColor">
+          <span class="checkmark" style="background-color: rgb(0, 45, 128);"></span>
+        </label>
+        <label class="color">
+          <input type="radio" value="violeta" name="formColor" formControlName="formColor">
+          <span class="checkmark" style="background-color: rgb(128, 0, 107);"></span>
+        </label>
+        <label class="color">
+          <input type="radio" value="granate" name="formColor" formControlName="formColor">
+          <span class="checkmark" style="background-color: rgb(128, 0, 0);"></span>
+        </label>
+        <label class="color">
+          <input type="radio" value="negro" name="formColor" formControlName="formColor">
+          <span class="checkmark" style="background-color: black;"></span>
+        </label>
+      </div> 
+    </div>
+  </section>
+
+  <section><!-- input cantidad talla-->
+      <div class="cantidad">
+        <h6>TALLA</h6>
+        <div class="form-group row">
+          <div class="tallas" *ngFor="let talla of Tallas" >
+            <label for="tallaS">{{talla}}</label>
+            <input class="form-control" style="text-align: center;" id="{{talla}}" #talla1 type="text" formControlName="tallaCantidad">
+           
+              <button class="btn btn-primary btn-sm"  (click)="reciveTalla(talla1)">AÑADIR</button>
+            
+          </div>
+        </div>
+      </div>  
+  </section>
+  
+  <section>
+    <div class="row"> <!--boton submit y condiciones obligatorias-->   
+      <div class="col-md-4" style="margin-top:50px; ">
+          <button type="submit" style="width:80%;" class="btn btn-success" [disabled]="formCamisa.status=='INVALID'">
+              <span style="color:white" class="glyphicon glyphicon-ok">
+                 <a [routerLink]="['../../tienda/diseños']" style="color: cornsilk;">seguir</a> 
+              </span>
+          </button>
+          <br />
+      </div>
+      <div style="width:25%;float: left;padding-left:15px; padding-left:15px; padding-top: 40px;">
+        <span class="danger" *ngIf="formCamisa.controls['formColor'].errors?.required else cantidad">
+            <p>FALTA CAMPO OBLIGATORIO</p>
+        </span>                                 
+      </div>
+      <ng-template #cantidad>
+        <span class="danger" *ngIf="formCamisa.controls['tallaCantidad'].errors?.required else genero">
+          <p>FALTA CAMPO OBLIGATORIO</p>
+      </span>
+      </ng-template>
+      <ng-template #genero>
+        <span class="danger" *ngIf="formCamisa.controls['formTipoTalla'].errors?.required">
+          <p>FALTA CAMPO OBLIGATORIO</p>
+      </span>
+      </ng-template>
+    </div> 
+  </section>
+
+    
+    <br> 
+  </form>
+</div>
+
+  

@@ -15,6 +15,7 @@ export class DisenoComponent implements OnInit {
 
   public _diseno: Diseno;
   public formDiseno: FormGroup;
+  public formImg: FormGroup;
   public pedido= new Pedido();
   public _producto: Producto= new Producto();
   public carrito: Producto[];
@@ -27,6 +28,10 @@ export class DisenoComponent implements OnInit {
          //------validator de la talla
          this.formDiseno = new FormGroup({
           formColor: new FormControl("",[Validators.required])
+        })
+
+        this.formImg = new FormGroup({
+          formSpan: new FormControl("",[Validators.required])
         })
   }
 
@@ -126,6 +131,9 @@ export class DisenoComponent implements OnInit {
           this.outlistaproductos=auxlista;
           this.outlistaDisenos=auxdisenos;
           this.outPutPedido=[];
+          var xas=new Diseno()
+          this.carrito=this._storage.get("carrito");
+          this.pedido.listaProductos.push([this.carrito,xas]);
           this.outPutPedido.push(this.pedido);
           console.log("pedido*******>", this.pedido);   
           console.log("*******>", this.pedido);

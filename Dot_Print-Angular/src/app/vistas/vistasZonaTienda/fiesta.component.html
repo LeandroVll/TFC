@@ -11,7 +11,7 @@
       <div class="">
           <div *ngFor="let item of indices">
             <div class="column">
-              <button class="botonpersonalizado" (click)="camisaseleccionada(item._id)">
+              <button class="botonpersonalizado" (click)="camisaseleccionada(item)">
                 <img class="mosaicoImg" [src]="item.imagen" >    
               </button>
             </div>
@@ -88,7 +88,7 @@
             <label for="tallaS">{{talla}}</label>
             <input class="form-control" style="text-align: center;" id="{{talla}}" #talla1 type="text" formControlName="tallaCantidad">
            
-              <button class="btn btn-primary btn-sm"  (click)="reciveTalla(talla1)">AÑADIR</button>
+              <button class="btn btn-primary btn-sm" [disabled]="formCamisa.status=='INVALID'" (click)="reciveObjetoCamisa(talla1)">AÑADIR</button>
             
           </div>
         </div>

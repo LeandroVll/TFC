@@ -50,22 +50,8 @@ export class FiestaComponent implements OnInit {
 
   //------------------------------------recibe obj camisa-------------------------------------------
 
-  reciveTalla(item){
-    //console.log("valor del id--->", item);
-   // var myInput = ((<HTMLInputElement>document.getElementById(item)));
-  
-    //console.log("valor del id--->", item.id)
-   if (item.id && item.value) {
-      this._cantidad=item.value;
-      this._talla=item.id;
-     // console.log("My input has a value!", this._talla, "-----", this._cantidad);
 
-      
-    }
-    this.reciveObjetoCamisa();
-  }
-
-  reciveObjetoCamisa(){
+  reciveObjetoCamisa(valores){
   //  console.log(item)
     let _produ = new Producto();//<--hay q inicializar el obj producto y guradar los valores iniciales del producto
     _produ.categoriaProducto="fiestas";
@@ -79,11 +65,11 @@ export class FiestaComponent implements OnInit {
     _produ.camisa.color = this.formCamisa.controls["formColor"].value;
     _produ.camisa.genero = this.formCamisa.controls["formTipoTalla"].value;
     //_produ.camisa.imagen= this.
-    console.log("OBJ _CAMISA----->", _produ);
+   // console.log("OBJ _CAMISA----->", _produ);
     //--------------------------------------
 
-    _produ.camisa.talla=this._talla;
-    _produ.camisa.cantidad=Number(this._cantidad);
+    _produ.camisa.talla=valores.id;
+    _produ.camisa.cantidad=Number(valores.value);
 
     //--------------------------------------
     if (this.formCamisa) {
@@ -122,29 +108,19 @@ export class FiestaComponent implements OnInit {
 
 
   //------------------------recupera una camisa seleccionada y la muesta ----------------
-camisaseleccionada(idCamisa){
+camisaseleccionada(icamisa){
  // console.log("_id---->",idCamisa)
   
-  this._camisa.id=idCamisa;
-  this._peticionesRest.recuperaUnaCamisa(this._camisa).subscribe((result)=>{
-    if (result) {
-      if (this.imgSelect.length>0) {//<---si el array tiene alguna imagen la elimina y se sobreescribe
-        this._camisa=result;
-        //console.log("resultado _camisa--->",this._camisa)
-        this.imgSelect=[];
-        this.imgSelect.push(this._camisa);
+  this._camisa=icamisa;
+  console.log("resultado _camisa--->",this._camisa)
+  if (this.imgSelect.length>0) {//<---si el array tiene alguna imagen la elimina y se sobreescribe
+   
+    this.imgSelect=[];
+    this.imgSelect.push(this._camisa);
 
-      } else {
-        this.imgSelect.push(this._camisa);
-      }
-      
-     // console.log("resultado _camisa--->",this._camisa)
-    } else {
-      console.log("error camisa BBD--->",result)
-    }
-  })
-
-
+  } else {
+    this.imgSelect.push(this._camisa);
+  }
 
 }
 

@@ -15,10 +15,14 @@ export class DisenoComponent implements OnInit {
 
   public _diseno: Diseno;
   public formDiseno: FormGroup;
-  public pedido: Pedido;
+  public pedido= new Pedido();
   public _producto: Producto= new Producto();
   public carrito: Producto[];
   public outputDisenos: Diseno[];
+  public outlistaproductos=[];
+  public outlistaDisenos=[];
+  public outPutPedido=[];
+
   constructor(private _storage: LocalstorageService, private _peticionesRest: RestfullnodeService) { 
          //------validator de la talla
          this.formDiseno = new FormGroup({
@@ -29,8 +33,10 @@ export class DisenoComponent implements OnInit {
 
   ngOnInit() {
     this.recuperaDisenosBBDD();
+    this.recuperaCarrito();
   }
 
+  //-------------------------------------------------------------------------------------------------
   reciveDiseno(diseno){//<----se recibe el diseño elegido y se agrega al array listaproductos=[producto[],diseño]
     console.log("idDiseno---> ",diseno)
     this.pedido=this._storage.get("pedido");//<---se recupera pedido del ls
@@ -42,6 +48,8 @@ export class DisenoComponent implements OnInit {
     
     
   }
+
+  //-------------------------------------------------------------------------------------------------
   recuperaDisenosBBDD(){//recupera los diseños de la bbdd para imprimirlos en la vista
     this._peticionesRest.recuperarDisenos().subscribe((result)=>{
       //console.log("respuesta mongo--->", result)
@@ -56,7 +64,7 @@ export class DisenoComponent implements OnInit {
       
     })
   }
-
+  //-------------------------------------------------------------------------------------------------
   recuperaDiseno(diseno){
     this.pedido=this._storage.get("pedido");//<---se recupera pedido del ls
     this.carrito=this._storage.get("carrito");
@@ -87,5 +95,49 @@ export class DisenoComponent implements OnInit {
    
     console.log("_pedido------>",  this.pedido);
   }
+
+  //-------------------se recupera el carrito para mstarlo en la vista-----------------------------------
+
+  recuperaCarrito(){
+
+    this.pedido=this._storage.get("pedido");//<---se agregan al pedido default los datos nuevos
+    this.pedido.tipodeEnvio="estandar"; //<--de moemnto todos estandar
+    //console.log("RECUPERA PEDIDO()--->", this.pedido.listaProductos.length);
+    var auxlista=[];
+    var auxdisenos=[];
+    var subtotal=0;
+      for (let index = 0; index < this.pedido.listaProductos.length; index++) {
+        
+          const arrInterno = this.pedido.listaProductos[index];
+            //console.log("[obj]--->",arrInterno[0]);//<---muestra los [obj] dentro del array
+            //console.log("color--->",arrInterno[1]);//<---muestra los colores dentro del array
+            auxlista.push(arrInterno[0]);
+            auxdisenos.push(arrInterno[1]);
+            //console.log("*******>", arrInterno[0]);
+            for (let index = 0; index < arrInterno[0].length; index++) {
+              const element = arrInterno[0][index];
+              subtotal=subtotal+(element.camisa.cantidad*element.precio);
+            // console.log("*******>", element);   
+            }
+          
+      }
+        //----->gurada por separado los arrays con los array de productos y de diseños 
+          //------para poder ser mostrados en la vista
+          this.outlistaproductos=auxlista;
+          this.outlistaDisenos=auxdisenos;
+          this.outPutPedido=[];
+          this.outPutPedido.push(this.pedido);
+          console.log("pedido*******>", this.pedido);   
+          console.log("*******>", this.pedido);
+  }
+
+
+
+
+
+
+
+
+
 
 }

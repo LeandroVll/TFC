@@ -45,38 +45,37 @@ recuperaPedido(){
   var auxlista=[];
   var auxdisenos=[];
   var subtotal=0;
-  for (let index = 0; index < this.pedido.listaProductos.length; index++) {
-    
-      const arrInterno = this.pedido.listaProductos[index];
-        //console.log("[obj]--->",arrInterno[0]);//<---muestra los [obj] dentro del array
-        //console.log("color--->",arrInterno[1]);//<---muestra los colores dentro del array
-        auxlista.push(arrInterno[0]);
-        auxdisenos.push(arrInterno[1]);
-        //console.log("*******>", arrInterno[0]);
-        for (let index = 0; index < arrInterno[0].length; index++) {
-          const element = arrInterno[0][index];
-          subtotal=subtotal+(element.camisa.cantidad*element.precio);
-         // console.log("*******>", element);   
-        }
-       
-  }
+    for (let index = 0; index < this.pedido.listaProductos.length; index++) {
+      
+        const arrInterno = this.pedido.listaProductos[index];
+          //console.log("[obj]--->",arrInterno[0]);//<---muestra los [obj] dentro del array
+          //console.log("color--->",arrInterno[1]);//<---muestra los colores dentro del array
+          auxlista.push(arrInterno[0]);
+          auxdisenos.push(arrInterno[1]);
+          //console.log("*******>", arrInterno[0]);
+          for (let index = 0; index < arrInterno[0].length; index++) {
+            const element = arrInterno[0][index];
+            subtotal=subtotal+(element.camisa.cantidad*element.precio);
+          // console.log("*******>", element);   
+          }
+        
+    }
+      //----->gurada por separado los arrays con los array de productos y de diseños 
+        //------para poder ser mostrados en la vista
+        this.outlistaproductos=auxlista;
+        this.outlistaDisenos=auxdisenos;
 
-  //----->gurada por separado los arrays con los array de productos y de diseños 
-    //------para poder ser mostrados en la vista
-    this.outlistaproductos=auxlista;
-    this.outlistaDisenos=auxdisenos;
+      //-------------------------------------------------------------------------
 
-  //-------------------------------------------------------------------------
-
-    //this._pedido = this.pedido;
-    this.outPutPedido=[];//<---se inicializa sino da null
-    this.pedido.subtotal=subtotal;
-    var auxtotal =(this.pedido.subtotal)+(this.pedido.gastosEnvio);
-    var total = (auxtotal * 100) / 100;
-    this.pedido.total=total;
-    this.outPutPedido.push(this.pedido);
-    this._storage.set("pedido",this.pedido)
-    //console.log("listapedido--->", this.outPutPedido);
+        //this._pedido = this.pedido;
+        this.outPutPedido=[];//<---se inicializa sino da null
+        this.pedido.subtotal=subtotal;
+        var auxtotal =(this.pedido.subtotal)+(this.pedido.gastosEnvio);
+        var total = (auxtotal * 100) / 100;
+        this.pedido.total=total;
+        this.outPutPedido.push(this.pedido);
+        this._storage.set("pedido",this.pedido)
+        //console.log("listapedido--->", this.outPutPedido);
   
 }
 

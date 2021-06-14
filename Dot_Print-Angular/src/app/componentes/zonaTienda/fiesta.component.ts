@@ -52,12 +52,15 @@ export class FiestaComponent implements OnInit {
 
 
   reciveObjetoCamisa(valores){
-  //  console.log(item)
+    //console.log(valores)
     let _produ = new Producto();//<--hay q inicializar el obj producto y guradar los valores iniciales del producto
     _produ.categoriaProducto="fiestas";
     _produ.nombreProducto="camisa"; 
     _produ.precio=5; 
     _produ.descripcion="camisa de algodon";
+    var n = (Math.floor(Math.random()*1000));
+    var foo = ""+n;
+    _produ._id=foo;//<-- se le pasa un id aleatorio que servirá para asociarlo a un diseño en diseno.ts
     
     _produ.camisa= new Camisa();//<---inicializa el obj camisa dentro de producto
     _produ.camisa=this._camisa;
@@ -68,7 +71,7 @@ export class FiestaComponent implements OnInit {
    // console.log("OBJ _CAMISA----->", _produ);
     //--------------------------------------
 
-    _produ.camisa.talla=valores.id;
+    _produ.camisa.talla=valores.id;//<--id porque se ha pasado como obj html
     _produ.camisa.cantidad=Number(valores.value);
 
     //--------------------------------------

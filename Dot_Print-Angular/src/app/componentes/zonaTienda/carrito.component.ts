@@ -26,7 +26,8 @@ export class CarritoComponent implements OnInit {
   constructor(private _storage: LocalstorageService, private _peticionesRest: RestfullnodeService) {
           //------validator del input que modifica la cantidad del producto
           this.formCamisa = new FormGroup({
-            cantModi: new FormControl("",[ Validators.required,Validators.pattern("^[0-9]{1,2}$")])
+            cantModi: new FormControl("",[ Validators.required,Validators.pattern("^[1-9]{1,2}$"), 
+                                          Validators.minLength(1), Validators.maxLength(2)])
           })
    }
 
@@ -75,14 +76,10 @@ recuperaPedido(){
         this.pedido.total=total;
         this.outPutPedido.push(this.pedido);
         this._storage.set("pedido",this.pedido)
-        //console.log("listapedido--->", this.outPutPedido);
+        console.log("listapedido--->", this.outPutPedido);
   
 }
 
-//----------------------------------------------------------------------------------------------
-  GuardarPedidoBD(pedido: Pedido){
-    //console.log("---->",pedido );
-  }
 
 //----------------------------------------------------------------------------------------------
 ModificaPedido(camisa){

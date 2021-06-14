@@ -5,6 +5,7 @@ import { LocalstorageService } from 'src/app/servicios/localStorageService';
 import { Pedido } from 'src/app/modelos/pedido';
 import { Producto } from 'src/app/modelos/producto';
 import { RestfullnodeService } from 'src/app/servicios/restfullNode.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-diseno',
@@ -17,21 +18,22 @@ export class DisenoComponent implements OnInit {
   public formDiseno: FormGroup;
   public formImg: FormGroup;
   public pedido= new Pedido();
-  public _producto: Producto= new Producto();
+  public _producto= new Producto();
   public carrito: Producto[];
   public outputDisenos: Diseno[];
   public outlistaproductos=[];
   public outlistaDisenos=[];
   public outPutPedido=[];
+  public auxDiseno=[];
 
-  constructor(private _storage: LocalstorageService, private _peticionesRest: RestfullnodeService) { 
+  constructor(private _storage: LocalstorageService, private _peticionesRest: RestfullnodeService,private _router:Router) { 
          //------validator de la talla
          this.formDiseno = new FormGroup({
           formColor: new FormControl("",[Validators.required])
         })
 
         this.formImg = new FormGroup({
-          formSpan: new FormControl("",[Validators.required])
+          formSpan: new FormControl("",[Validators.maxLength(20)])
         })
   }
 
@@ -39,19 +41,6 @@ export class DisenoComponent implements OnInit {
   ngOnInit() {
     this.recuperaDisenosBBDD();
     this.recuperaCarrito();
-  }
-
-  //-------------------------------------------------------------------------------------------------
-  reciveDiseno(diseno){//<----se recibe el diseño elegido y se agrega al array listaproductos=[producto[],diseño]
-    console.log("idDiseno---> ",diseno)
-    this.pedido=this._storage.get("pedido");//<---se recupera pedido del ls
-    this.carrito=this._storage.get("carrito");
-    //------se dan los valores al obj diseño
-    this._producto.diseno=  new Diseno();
-    this._producto.diseno.color = this.formDiseno.controls["formColor"].value;
-    this._producto.diseno.idDiseno=diseno;
-    
-    
   }
 
   //-------------------------------------------------------------------------------------------------
@@ -70,35 +59,30 @@ export class DisenoComponent implements OnInit {
     })
   }
   //-------------------------------------------------------------------------------------------------
-  recuperaDiseno(diseno){
+  recuperaDiseno(_dis){
+    console.log("@@@@@@@====>",_dis)
     this.pedido=this._storage.get("pedido");//<---se recupera pedido del ls
     this.carrito=this._storage.get("carrito");
     //------se dan los valores al obj diseño
     this._producto.diseno=  new Diseno();
     this._producto.diseno.color = this.formDiseno.controls["formColor"].value;
-    this._producto.diseno.idDiseno=diseno;
+    this._producto.diseno=_dis;
+    var n = (Math.floor(Math.random()*1000));
+    var foo = ""+n;
+    this._producto._id=foo;//<---id del producto
+    this._producto.categoriaProducto="diseños";
+    this._producto.nombreProducto="diseño1"; 
+    this._producto.precio=2; 
+    this._producto.descripcion="diseño festivo";
 
-    //console.log("respuesta de mongo-->", this._producto);
-    this._peticionesRest.recuperarDiseno(this._producto).subscribe((result)=>{
-      if (result) {
-        console.log("respuesta de mongo*-->", result);
-        var produ = result;
-        //console.log("respuesta de mongo******>", produ.respuesta.descripcion);
-        this._producto.diseno.categoriaDiseno= result.diseno.categoriaDiseno;
-        this._producto.diseno.descripcion=result.diseno.descripcion;
-        this._producto.diseno.imagen=result.diseno.imagen;
-        this._producto.diseno.precio=result.diseno.precio;
-        this.pedido.listaProductos.push([this.carrito, this._producto.diseno]);
-        this._storage.set("pedido",this.pedido);//<---se vuevel a guradar el pedido actualizado en ls
-      } else {
-        console.log("error de mongo-->", );
-      }
-    })
-
+    console.log("this._producto-->", this._producto);
     
-    //this.pedido.nifcliente="00000000A";
-   
-    console.log("_pedido------>",  this.pedido);
+    
+
+
+    this.auxDiseno.push(this._producto)
+    
+    console.log("this.auxDiseno-->", this.auxDiseno)
   }
 
   //-------------------se recupera el carrito para mstarlo en la vista-----------------------------------
@@ -131,16 +115,22 @@ export class DisenoComponent implements OnInit {
           this.outlistaproductos=auxlista;
           this.outlistaDisenos=auxdisenos;
           this.outPutPedido=[];
-          var xas=new Diseno()
+          var xas: Diseno[];
           this.carrito=this._storage.get("carrito");
           this.pedido.listaProductos.push([this.carrito,xas]);
           this.outPutPedido.push(this.pedido);
-          console.log("pedido*******>", this.pedido);   
-          console.log("*******>", this.pedido);
+          //console.log("pedido*******>", this.pedido);   
+          //console.log("*******>", this.pedido);
   }
 
 
-
+  guradaPedido(){
+    var aux=this.auxDiseno;
+    this.pedido.listaProductos.push([this.carrito, aux]);
+    this._storage.set("pedido",this.pedido);//<---se vuevel a guradar el pedido actualizado en ls
+    console.log("_pedido------>",  this.pedido);
+    this._router.navigate(["/tienda/carrito"]);
+  }
 
 
 

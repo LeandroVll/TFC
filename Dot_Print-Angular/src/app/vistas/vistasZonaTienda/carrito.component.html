@@ -34,8 +34,8 @@
                                             </div>
                                         </td>
                                         <td>
-                                            <div class="aux" >
-                                                <img [src]="item[1].imagen" style="width: 5rem; height: 5rem;" >
+                                            <div class="aux" *ngFor="let list of item[1]">
+                                                <img [src]="list.diseno.imagen" style="width: 5rem; height: 5rem;" >
                                             </div>
                                         </td>
                                         <td>

@@ -8,17 +8,16 @@
                         </div>
                         <ul class="list-group list-group-flush">    
                             <li class="list-group-item"><br></li>    
-                        <a [routerLink]="['../../cliente/GestionPedido']" class="card-link"><li class="list-group-item">Gestionar Pedido Actual</a>
                         <a [routerLink]="['../../cliente/historial']" class="card-link"><li class="list-group-item">Ver Pedidos</a>  
-                        <a [routerLink]="['../../cliente/Direccion']" class="card-link"><li class="list-group-item">Introducir otra direccion</a>
-                        <a [routerLink]="['../../cliente/ListaDirecciones']" class="card-link"><li class="list-group-item">Mi Lista de Direcciones</a>  
+                        <a [routerLink]="['../../cliente/actualizadirecciones']" class="card-link"><li class="list-group-item">Introducir otra direccion</a>
+                        <a [routerLink]="['../../cliente/direcciones']" class="card-link"><li class="list-group-item">Mi Lista de Direcciones</a>  
                         <a [routerLink]="['../../cliente/InformacionPersonal']" class="card-link"><li class="list-group-item">Mi Informacion Personal</a>
                         <a [routerLink]="['../../cliente/DatosAcceso']" class="card-link"><li class="list-group-item">Datos de Acceso</li></a>
                         </ul>
                         <div class="card-body">
-                        <a [routerLink]="['../../Tienda/productos']"
+                        <a [routerLink]="['../../tienda/portada']"
                         class="card-link">Ir a la tienda</a>
-                        <a [routerLink]="['../../Cliente/login']" class="card-link">Cerrar Sesion</a>
+                        <a [routerLink]="['../../tienda/portada']" class="card-link">Cerrar Sesion</a>
                     </div>
                 </div>
             </div>
@@ -51,8 +50,8 @@
                                         </div>
                                     </td>
                                     <td>
-                                        <div class="aux" >
-                                            <img [src]="item[1].imagen" style="width: 5rem; height: 5rem;" >
+                                        <div class="aux" *ngFor="let list of item[1]">
+                                            <img [src]="list.diseno.imagen" style="width: 5rem; height: 5rem;" >
                                         </div>
                                     </td>
                                     <td>

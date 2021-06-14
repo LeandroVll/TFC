@@ -1,4 +1,4 @@
-<div class="row" *ngFor="let unaDireccion of listaDirecciones">
+<div class="row" *ngFor="let unaDireccion of listaDirecciones" [formGroup]="formDir">
     <table class="table">
         <thead class="thead-dark" style="text-align: center;">
         <tr>          
@@ -15,10 +15,10 @@
             
                 <th scope="row"> </th>
                 <tr *ngFor="let ladireccion of unaDireccion">          
-                    <td><div class="custom-control custom-radio">
-                        <input type="radio" class="custom-control-input" id="defaultUnchecked" name="defaultExampleRadios">
-                        <label class="custom-control-label" for="defaultUnchecked">{{ladireccion.tipoVia}}</label>
-                      </div>
+                    <td>
+                        <input type="radio" name="dir" (click)="dirSeleccionada(ladireccion)">
+                        <label for="defaultUnchecked">{{ladireccion.tipoVia}}</label>
+                       
                     </td>
                     <td>{{ladireccion.nombreVia}}</td>
                     <td>{{ladireccion.numeroEdificio}}</td>
@@ -36,11 +36,9 @@
         <div class="col-md-4" style="margin-top:10px;">
 
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button  class="btn btn-success" style="width:80%;" > <a [routerLink]="['../../Cliente/PanelUsuario']" class="card-link" style="color: cornsilk;">Volver</a></button>
-                <button type="submit" style="width:80%;" class="btn btn-success" >
-                    <span style="color:white" class="glyphicon glyphicon-ok">
-                        Seleccionar
-                    </span>
+                <button  class="btn btn-success" style="width:80%;" > <a [routerLink]="['../../cliente/PanelUsuario']" class="card-link" style="color: cornsilk;">modificar</a></button>
+                <button type="submit" (click)="delete()" style="width:80%;"   class="btn btn-success" >
+                    eliminar
                 </button>
             </div>
             

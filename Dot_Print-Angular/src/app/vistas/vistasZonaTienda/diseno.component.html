@@ -42,10 +42,10 @@
                                                       <div id="carousel1" class="carousel slide" data-ride="carousel" style="width: 7rem; height: 7rem;">
                                                           <div class="carousel-inner" role="listbox" >
                                                               <div *ngFor="let diseno of item; let i = index" class="carousel-item {{ (i == 0) ? 'active' : ''}}">
-                                                                  <button type="button" (click)="recuperaDiseno(diseno.idDiseno)"[disabled]="formDiseno.status=='INVALID'">
+                                                                  <button type="button" (click)="recuperaDiseno(diseno)" [disabled]="formDiseno.status=='INVALID'">
                                                                       <img class="d-block img-fluid w-100" [src]="diseno.imagen" >
                                                                       <div [formGroup]="formImg" style="display: none;">
-                                                                        <input type="text" value="{{diseno}}" name="formSpan" style="display: none;" formControlName="formSpan">                                                                          
+                                                                        <input type="text" value="{{diseno.idDiseno}}" name="formSpan" style="display: none;" formControlName="formSpan">                                                                          
                                                                       </div>
                                                                   </button>
                                                               </div>
@@ -95,7 +95,7 @@
                                                               <input type="radio" value="color9" name="formColor" formControlName="formColor">
                                                               <span class="checkmark" style="background-color: rgb(87, 0, 128);"></span>
                                                           </label>
-                                                          </div>
+                                                          </div><!--
                                                           <div class="form-group row" >
                                                           <label class="color">
                                                               <input type="radio" value="color10" name="formColor" formControlName="formColor">
@@ -133,15 +133,15 @@
                                                           <label class="color">
                                                           <input type="radio" value="18" name="formColor" formControlName="formColor">
                                                           <span class="checkmark" style="background-color: rgba(40, 4, 48, 0.938);"></span>
-                                                          </label>          
-                                                      </div> 
+                                                          </label>         
+                                                      </div>-->  
                                                 </div> 
                                             </td>
                                             <td>
                                                 <div class="col-md-4" >
                                                     <button type="succes" style="width:5rem;" class="btn btn-success" [disabled]="formImg.status=='INVALID'">
                                                         <span style="color:white" class="glyphicon glyphicon-ok">
-                                                           <a [routerLink]="['../../tienda/carrito']" style="color: cornsilk;" >seguir</a> 
+                                                          añadir
                                                         </span>
                                                     </button>
                                                     <br />
@@ -160,7 +160,14 @@
         </section>
     
         <section>
-            
+            <div class="col-md-4" >
+                <button type="submit" style="width:5rem;" (click)="guradaPedido()" class="btn btn-success" [disabled]="formImg.status=='INVALID'">
+                    <span style="color:white" class="glyphicon glyphicon-ok">
+                        seguir
+                    </span>
+                </button>
+                <br />
+            </div>
         </section>
     </form>  
 

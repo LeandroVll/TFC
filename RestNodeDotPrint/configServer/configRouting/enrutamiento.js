@@ -24,22 +24,27 @@ var listaProductos = require("../../esquemas/listaProductos");
  * recupera de la BD los productos disponibles 
 */
 router.get('/productosDisponibes',(req, res, next)=>{
-    (async function(){
+
+    async function buscar(){
         try {
-            await camisa.find((err, resultado)=>{
-                if (err) {
-                    console.log('ERROR en el find--->',err)
-                } else {
-                    console.log('RESULTADO DE MONGO--->',resultado);
-                    res.status(200).send(resultado);
-                    next();
-                }
-            })
+            var camisas = await camisa.find()
+            return camisas;
         } catch (e) {
             console.log('ERROR DE MONGO--->',e)
         }
+    }
+
+
+    (async function(){
+        var aux= await buscar()
+        console.log('PRODUCTOS DE LA BD--->',req.body)
+        console.log('RESULTADO DE MONGO--->',aux);
+        res.status(200).send(aux);
+        next();
     })();
-    //console.log('PRODUCTOS DE LA BD--->',req.body)
+
+    
+   
 });
 
 //=======================================================================================
@@ -69,7 +74,7 @@ router.get('/disenosDisponibles',(req,res,next)=>{
     
 });
 //=======================================================================================
-router.post("/insertaDireccion",(req,res,next)=>{
+router.post("/insertaDireccion",auth, (req,res,next)=>{
 
 console.log("datos=====>", req.body);
 
@@ -331,7 +336,7 @@ router.post('/decodificarToken',(req, res, next)=>{
 
 //=================================gurdadr pedido=========================================
 
-router.post("/guardaPedido",(req, res, next)=>{
+router.post("/guardaPedido", auth, (req, res, next)=>{
     console.log("datos====>", req.body)
 
     var tupla;
@@ -424,7 +429,7 @@ router.post("/guardaPedido",(req, res, next)=>{
 
 //=================================resupera historial de pedidos=========================================
 
-router.post("/recuperaPedidos",(req, res , next)=>{
+router.post("/recuperaPedidos",auth ,(req, res , next)=>{
     console.log("ok----->", req.body)
 
     async function buscar(){
@@ -459,7 +464,7 @@ router.post("/recuperaListProdu",(req, res , next)=>{
 
 //===============recupera lista de direcciones decodificando el token==================================
 
-router.post('/recuperaDirecciones',(req, res, next)=>{
+router.post('/recuperaDirecciones', auth, (req, res, next)=>{
 
     console.log('enviado por el cliente-->', req.body.nif)
 
@@ -483,11 +488,37 @@ router.post('/recuperaDirecciones',(req, res, next)=>{
         }
     })()
 
-    
-
-
 })
 
+//===============elimina una direccion ==================================
+
+router.post('/eliminaDir',auth ,(req, res, next)=>{
+
+    console.log('enviado por el cliente-->', req.body)
+
+    async function _direccion()
+    {
+        const dir = await direccion.deleteOne({nif: req.body._id})  
+       
+       // console.log("=======>>>",dir)      
+        return dir
+    }
+
+    
+    (async function(){
+        try {
+            const _dir = await _direccion();
+            //const eliminada= await _eliminar(_dir);
+            console.log('direccion ----->', _dir)
+            
+        } catch (e) {
+            console.log('ERROR RECUPERANDO DIRECCIONES -->', e)
+            res.status(400).send('error en la direccion introducida');
+            next();
+        }
+    })()
+
+})
 
 
 

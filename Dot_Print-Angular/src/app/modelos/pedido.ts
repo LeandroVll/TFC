@@ -6,7 +6,7 @@ import { Producto } from "./producto";
 export class Pedido{
     idPedido: string;
     nifcliente: string;
-    listaProductos: Array<[Producto[], Diseno]>; //[(producto,cantidadProducto), diseño]
+    listaProductos: Array<[Producto[], Diseno[]]>; //[(producto,cantidadProducto), diseño]
     direccion: Direccion;
     datosPago: DatosPago;
     tipodeEnvio: string;

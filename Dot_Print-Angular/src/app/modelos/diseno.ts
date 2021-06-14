@@ -6,4 +6,5 @@ export class Diseno {
     precio: number;
     descripcion: string;
     imagen: string;
+    idObjeto: string;
 }

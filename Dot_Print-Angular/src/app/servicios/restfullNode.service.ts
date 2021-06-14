@@ -6,7 +6,6 @@ import { Direccion } from "../modelos/direccion";
 import { Camisa } from "../modelos/camisa";
 import { Cliente } from "../modelos/cliente";
 import { Pedido } from "../modelos/pedido";
-
 @Injectable({
     providedIn: 'root'
 })
@@ -167,5 +166,17 @@ export class RestfullnodeService{
                                         }
         );
     }
+    
+    /**
+    * recupera lista direcciones
+     * */
+     public eliminaDir(_direccion: any): Observable<Direccion> {
 
+
+        return this._http.post<Direccion>(  'http://localhost:3000/api/eliminaDir',_direccion,
+                                        {
+                                            headers : new HttpHeaders({ 'Content-Type': 'application/json' })
+                                        }
+        );
+    }
 }

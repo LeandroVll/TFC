@@ -43,7 +43,7 @@ export class RegistroComponent implements OnInit {
         if (result) {
           console.log("cliente registrado---->", result);
           this._storage.set("token", result );
-            this._router.navigate(["/cliente/panelUsuario"]);
+            this._router.navigate(["/cliente/envio"]);
         } else {
           console.log("error mongo NO registrado---->", result);
         }

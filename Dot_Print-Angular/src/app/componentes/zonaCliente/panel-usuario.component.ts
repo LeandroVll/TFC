@@ -84,6 +84,8 @@ export class PanelUsuarioComponent implements OnInit {
              this._peticionesRest.guradaPedido(_datos).subscribe((result)=>{
                   console.log("pedido======>",result)
                   //se eliminaria el pedido del ls
+                  this._storage.remove("carrito")
+                  this._storage.remove("pedido")
                   if (result) {
                     
                    // this._storage.clear();

@@ -11,6 +11,7 @@ import { RegistroComponent } from './componentes/zonaCliente/registro.component'
 import { PanelUsuarioComponent } from './componentes/zonaCliente/panel-usuario.component';
 import { HistorialPedidosComponent } from './componentes/zonaCliente/historial-pedidos.component';
 import { DireccionesComponent } from './componentes/zonaCliente/direcciones.component';
+import { ActualizadireccionComponent } from './componentes/zonaCliente/actualizadireccion.component';
 
 
 const routes: Routes = [
@@ -31,7 +32,8 @@ const routes: Routes = [
                                                         {path: 'registro', component: RegistroComponent},
                                                         {path: 'panelUsuario', component: PanelUsuarioComponent},
                                                         {path: 'historial', component: HistorialPedidosComponent},
-                                                        {path: 'direcciones', component: DireccionesComponent},  
+                                                        {path: 'direcciones', component: DireccionesComponent},
+                                                        {path: 'actualizadirecciones', component: ActualizadireccionComponent},    
                                                     ]
                         },
                         

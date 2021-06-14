@@ -8,7 +8,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { AppComponent } from './app.component';
 import { PortadaComponent } from './componentes/zonaTienda/portada.component';
 import { from } from 'rxjs';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FiestaComponent } from './componentes/zonaTienda/fiesta.component';
 import { DisenoComponent } from './componentes/zonaTienda/diseno.component';
 import { EnvioComponent } from './componentes/zonaCliente/envio.component';
@@ -19,6 +19,9 @@ import { RegistroComponent } from './componentes/zonaCliente/registro.component'
 import { PanelUsuarioComponent } from './componentes/zonaCliente/panel-usuario.component';
 import { HistorialPedidosComponent } from './componentes/zonaCliente/historial-pedidos.component';
 import { DireccionesComponent } from './componentes/zonaCliente/direcciones.component';
+import { AuthInterceptor } from './servicios/auth.interceptor';
+import { DatePipe } from '@angular/common';
+import { ActualizadireccionComponent } from './componentes/zonaCliente/actualizadireccion.component';
 
 //------------SERVICIOS-------------
 
@@ -37,6 +40,7 @@ import { DireccionesComponent } from './componentes/zonaCliente/direcciones.comp
     PanelUsuarioComponent,
     HistorialPedidosComponent,
     DireccionesComponent,
+    ActualizadireccionComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +50,13 @@ import { DireccionesComponent } from './componentes/zonaCliente/direcciones.comp
     AppRoutingModule,
     HttpClientModule  
   ],
-  providers: [],
+  providers: [    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,//<---clase q implementa el HttpInterceptor
+    multi: true //<---autoriza a tener varios valores el interceptor
+  },
+  DatePipe
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -16,7 +16,7 @@ var direccion=new Schema(
         cp: {  type: String , required: true},
         provincia: { type: Schema.Types.ObjectId, ref:"provincia"},        
         localidad: { type: Schema.Types.ObjectId, ref:"localidad" }
-    }
+    },{ collection : 'direccion' }
 );
 
 module.exports=mongoose.model("direccion",direccion, "direccion");
